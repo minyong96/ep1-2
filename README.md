@@ -372,13 +372,18 @@ epic1-2/
 ├── app/
 │   │
 │   ├── domain/
-│   │   └── quiz.py 
+│   │   └── quiz.py
+│   │   └── game_state.py
+│   │   └── score_history.py   
 │   │
 │   ├── service/
-│   │   └── quiz_game.py
+│   │   └── quiz_service.py
 │   │
-│   └── storage/
-│       └── state_repository.py
+│   ├── storage/
+│   |    └── abstract_repository.py
+│   |    └── json_state_repository.py
+│   └── ui/
+│       └── quiz_game.py
 │
 ├── data/
 │   └── state.json
@@ -386,7 +391,6 @@ epic1-2/
 ├── docs/
 │   └── screenshots/
 │
-├── tests/
 │
 ├── README.md
 │
@@ -403,38 +407,7 @@ python main.py
 
 ---
 
-# 13. Git 워크플로우 (Git Workflow)
-
-이 프로젝트는 기능 단위 개발 방식을 따릅니다.
-
-## 커밋 전략
-
-각 기능은 독립적으로 구현되고 커밋되었습니다.
-
-```jsx
-Feat: 메뉴 시스템 구현
-Feat: 퀴즈 저장 기능 추가
-Fix: 잘못된 입력 처리 오류 수정
-Refactor: Quiz 책임 분리
-Docs: README 문서 작성
-```
-
----
-
-## 브랜치 전략
-
-```jsx
-main
-
-feature/play-quiz
-feature/add-quiz
-feature/persistence
-feature/input-validation
-```
-
----
-
-# 14. 관찰 가능성 (Observability)
+# 13. 관찰 가능성 (Observability)
 
 이 시스템은 최소한의 운영 관찰성을 제공합니다.
 
