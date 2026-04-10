@@ -31,7 +31,6 @@ class GameState:
     # ── 동작 ──────────────────────────────────────────
 
     def record_score(self, score: float) -> None:
-        """게임 결과를 기록하고 최고점을 갱신합니다."""
         history = ScoreHistory(
             played_at=datetime.now(),
             quiz_count=self.quiz_count,
@@ -39,8 +38,7 @@ class GameState:
         )
         self.score_histories.append(history)
 
-        if score > self.best_score:
-            self.best_score = score
+        self.best_score = max(self.best_score, score)
 
     def add_quiz(self, quiz: Quiz) -> None:
         self.quizzes.append(quiz)
@@ -70,7 +68,6 @@ class GameState:
 
     @classmethod
     def create_default(cls) -> GameState:
-        """초기 상태를 생성합니다."""
         return cls(quizzes=_default_quizzes())
 
 
