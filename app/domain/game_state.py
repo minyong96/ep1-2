@@ -82,20 +82,24 @@ def _default_quizzes() -> list[Quiz]:
             question="Python의 창시자는 누구인가?",
             choices=("Guido van Rossum", "Linus Torvalds", "James Gosling", "Bjarne Stroustrup"),
             answer=1,
+            hint= "파이썬 언어를 만든 네덜란드 출신 개발자이다."
         ),
         Quiz(
             question="문자열 길이를 구하는 함수는?",
             choices=("size()", "length()", "count()", "len()"),
             answer=4,
+            hint= "파이썬 내장 함수이다"
         ),
         Quiz(
             question="조건문을 시작할 때 사용하는 키워드는?",
             choices=("for", "while", "if", "switch"),
             answer=3,
+            hint= "C, Java와 비슷한 키워드다."
         ),
         Quiz(
             question="반복문에 올바른 키워드는?",
             choices=("repeat", "loop", "for", "iterate"),
             answer=3,
+            hint= "for-in 구문으로 자주 쓴다."
         ),
     ]
