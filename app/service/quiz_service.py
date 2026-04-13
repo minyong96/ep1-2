@@ -31,12 +31,15 @@ class QuizService:
 
     def add_quiz(self, quiz: Quiz) -> None:
         self._state.add_quiz(quiz)
+        self.save()
 
     def remove_quiz_at(self, index: int) -> Quiz:
         if not (1 <= index <= len(self.quizzes)):
             raise ValueError(f"유효하지 않은 퀴즈 번호입니다: {index}")
         quiz = self.quizzes[index - 1]
         self._state.remove_quiz(quiz)
+
+        self.save()
         return quiz
 
     def sample_quizzes(self, count: int) -> list[Quiz]:
