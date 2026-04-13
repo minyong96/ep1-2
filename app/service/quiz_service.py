@@ -50,7 +50,10 @@ class QuizService:
         return max(0.0, correct - hint_used * 0.5)
 
     def record_result(self, score: float, quiz_count: int) -> bool:
-        return self._state.record_score(score)
+        is_new_best = self._state.record_score(score)
+        self.save()
+
+        return is_new_best
 
     # ── 저장 ──────────────────────────────────────────
 

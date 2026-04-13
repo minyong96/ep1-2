@@ -25,6 +25,8 @@ class QuizGame:
             print()
             print("사용자에 의해 종료되었습니다.")
             self._shutdown()
+        finally:
+            self._shutdown()
 
     def _handle_menu(self, choice: int) -> None:
         actions = {
@@ -69,7 +71,7 @@ class QuizGame:
         )
 
         selected = self._service.sample_quizzes(count)
-        correct, hint_used = 0, 0
+        correct, hint_used, final_score, is_new_best = 0, 0, 0, False
 
         for quiz in selected:
             is_correct, used_hint = self._ask_question(quiz)
@@ -78,9 +80,9 @@ class QuizGame:
                 correct += 1
             if used_hint:
                 hint_used += 1
+            final_score = self._service.calculate_score(correct, hint_used)
+            is_new_best = self._service.record_result(final_score, count)
 
-        final_score = self._service.calculate_score(correct, hint_used)
-        is_new_best = self._service.record_result(final_score, count)
 
         print(f"\n총 점수: {final_score}")
         if is_new_best:
